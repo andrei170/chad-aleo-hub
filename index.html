@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG Consulting | Built For Chad Aleo</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --black: #000000; --surface: #0A0A0F;
+    --gold-1: #D4A84B; --gold-2: #B8922E; --gold-flat: #C9973A;
+    --white: #FFFFFF; --muted: #9A9AA5; --border: rgba(255,255,255,0.10);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter','Open Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background: var(--black); color: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  .gold-text { background: linear-gradient(135deg, var(--gold-1), var(--gold-2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .wrap { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 22px; }
+  nav { position: sticky; top: 0; z-index: 50; background: rgba(0,0,0,0.72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 22px; max-width: 1080px; margin: 0 auto; }
+  .wordmark { font-weight: 800; font-size: 1.3rem; letter-spacing: 0.5px; }
+  .wordmark .ag { background: linear-gradient(135deg, var(--gold-1), var(--gold-2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .wordmark .co { color: var(--white); font-weight: 800; }
+  .nav-cta { font-size: 0.82rem; font-weight: 700; text-decoration: none; color: var(--black); background: linear-gradient(135deg, var(--gold-1), var(--gold-2)); padding: 9px 18px; border-radius: 40px; white-space: nowrap; }
+  header.hero { padding: 90px 0 70px; text-align: center; position: relative; background: radial-gradient(circle at 50% 0%, rgba(201,151,58,0.10), transparent 55%); }
+  .badge { display: inline-block; font-size: 0.74rem; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: var(--gold-flat); border: 1px solid rgba(201,151,58,0.4); border-radius: 40px; padding: 8px 18px; margin-bottom: 30px; }
+  .brand-row { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 26px; }
+  .brand-block { font-weight: 800; font-size: 1.8rem; letter-spacing: 0.5px; }
+  .brand-x { color: var(--muted); font-size: 1.4rem; font-weight: 400; }
+  header.hero h1 { font-size: clamp(1.9rem, 5vw, 3rem); font-weight: 800; line-height: 1.12; margin-bottom: 20px; }
+  header.hero p.sub { color: var(--muted); font-size: 1.1rem; max-width: 620px; margin: 0 auto; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 34px 18px; margin: 50px 0; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+  .stat { text-align: center; }
+  .stat .num { font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 800; line-height: 1; }
+  .stat .label { font-size: 0.82rem; color: var(--muted); margin-top: 10px; letter-spacing: 0.4px; }
+  .sec-head { text-align: center; margin: 70px 0 36px; }
+  .sec-head .eyebrow { font-size: 0.74rem; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: var(--gold-flat); }
+  .sec-head h2 { font-size: clamp(1.5rem, 4vw, 2.1rem); font-weight: 800; margin-top: 12px; }
+  .acc { display: flex; flex-direction: column; gap: 16px; }
+  .card { background: rgba(10,10,15,0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.45); }
+  .acc-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 24px; cursor: pointer; user-select: none; }
+  .acc-head .left { display: flex; align-items: center; gap: 16px; }
+  .acc-num { flex-shrink: 0; width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.95rem; color: var(--black); background: linear-gradient(135deg, var(--gold-1), var(--gold-2)); }
+  .acc-head h3 { font-size: 1.08rem; font-weight: 800; }
+  .acc-icon { flex-shrink: 0; color: var(--gold-flat); font-size: 1.5rem; transition: transform 0.35s ease; line-height: 1; }
+  .card.open .acc-icon { transform: rotate(45deg); }
+  .acc-body { max-height: 0; overflow: hidden; transition: max-height 0.45s ease; }
+  .acc-inner { padding: 0 24px 26px; color: #D7D7DE; }
+  .acc-inner p { margin-bottom: 14px; }
+  .acc-inner p:last-child { margin-bottom: 0; }
+  .acc-inner strong { color: var(--white); }
+  .acc-inner .gold-label { color: var(--gold-flat); font-weight: 700; }
+  .item { border-left: 2px solid rgba(201,151,58,0.45); padding: 4px 0 4px 16px; margin-bottom: 18px; }
+  .item:last-child { margin-bottom: 0; }
+  .item .name { font-weight: 800; color: var(--white); display: block; margin-bottom: 4px; }
+  .item .hl { color: #C7C7D0; font-style: italic; }
+  .pill { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; color: var(--gold-flat); border: 1px solid rgba(201,151,58,0.4); border-radius: 30px; padding: 4px 12px; margin-bottom: 8px; }
+  .stack-list { list-style: none; }
+  .stack-list li { padding: 7px 0 7px 26px; position: relative; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .stack-list li:last-child { border-bottom: none; }
+  .stack-list li::before { content: "+"; position: absolute; left: 0; color: var(--gold-flat); font-weight: 800; }
+  .btn-link { display: inline-block; margin-top: 16px; text-decoration: none; font-weight: 700; font-size: 0.92rem; color: var(--black); background: linear-gradient(135deg, var(--gold-1), var(--gold-2)); padding: 13px 26px; border-radius: 40px; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .btn-link:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(201,151,58,0.3); }
+  .process-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .proc { background: rgba(10,10,15,0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--border); border-radius: 16px; padding: 26px 24px; box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+  .proc .step { font-size: 0.78rem; font-weight: 800; letter-spacing: 1px; color: var(--gold-flat); margin-bottom: 12px; }
+  .proc h4 { font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; }
+  .proc p { color: var(--muted); font-size: 0.95rem; }
+  .cta-box { text-align: center; margin: 80px 0 60px; padding: 60px 30px; background: var(--surface); border: 1px solid rgba(201,151,58,0.25); border-radius: 22px; background-image: radial-gradient(circle at 50% 0%, rgba(201,151,58,0.12), transparent 60%); box-shadow: 0 24px 70px rgba(0,0,0,0.55); }
+  .cta-box h2 { font-size: clamp(1.7rem, 4.5vw, 2.4rem); font-weight: 800; margin-bottom: 16px; }
+  .cta-box p { color: var(--muted); max-width: 560px; margin: 0 auto 30px; font-size: 1.08rem; }
+  .cta-box .btn-link { font-size: 1.05rem; padding: 16px 38px; margin-top: 0; }
+  footer { text-align: center; padding: 40px 0 60px; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
+  footer .wordmark { font-size: 1.05rem; margin-bottom: 8px; }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  @media (max-width: 720px) { .stats { grid-template-columns: 1fr; gap: 24px; padding: 30px 18px; } .process-grid { grid-template-columns: 1fr; } .nav-cta { display: none; } header.hero { padding: 64px 0 50px; } .brand-block { font-size: 1.4rem; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="wordmark"><span class="ag">AG</span> <span class="co">CONSULTING</span></div>
+    <a href="https://calendly.com/ag-copy/call-with-andrei" class="nav-cta">Book a Call</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="badge reveal">Built Exclusively For Chad Aleo</span>
+    <div class="brand-row reveal">
+      <div class="brand-block"><span class="gold-text">AG</span> <span style="color:var(--white)">CONSULTING</span></div>
+      <span class="brand-x">for</span>
+      <div class="brand-block" style="color:var(--white)">CHAD ALEO</div>
+    </div>
+    <h1 class="reveal">A Front-End Funnel For The Academy,<br><span class="gold-text">Built For Your Business</span></h1>
+    <p class="sub reveal">A complete book-to-application funnel and marketing package created specifically for High Ticket Sales Academy.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="stats reveal">
+    <div class="stat"><div class="num"><span data-count="6">0</span>+</div><div class="label">Hours of Research</div></div>
+    <div class="stat"><div class="num"><span data-count="7">0</span></div><div class="label">Custom Deliverables</div></div>
+    <div class="stat"><div class="num"><span data-count="2">0</span></div><div class="label">Live Pages</div></div>
+  </div>
+
+  <div class="sec-head reveal">
+    <div class="eyebrow">The Work</div>
+    <h2>Everything We Built For You</h2>
+  </div>
+
+  <div class="acc">
+
+    <!-- 1 RESEARCH -->
+    <div class="card reveal">
+      <div class="acc-head"><div class="left"><div class="acc-num">1</div><h3>Research Snapshot</h3></div><span class="acc-icon">+</span></div>
+      <div class="acc-body"><div class="acc-inner">
+        <p>You have the rare full set: a named Academy, two certifications, a bestselling book, a free audiobook, and a combined audience around 23K across your accounts. The offer is not the problem.</p>
+        <p>The problem is the front end. Your strongest asset, the book and your door-to-door-to-eight-figures story, dead-ends into "watch a free webinar." There is no clean path from a reader to a booked application call.</p>
+        <p><span class="gold-label">Three more gaps:</span></p>
+        <p>1. Price is hidden behind every form, so the audience can't self-qualify.<br>
+        2. The rep track and the company track fight for the same homepage CTA.<br>
+        3. No email nurture pulls a reader from "downloaded the audiobook" to "applied."</p>
+      </div></div>
+    </div>
+
+    <!-- 2 OFFER -->
+    <div class="card reveal">
+      <div class="acc-head"><div class="left"><div class="acc-num">2</div><h3>The Named System: The Fearless Closer Path</h3></div><span class="acc-icon">+</span></div>
+      <div class="acc-body"><div class="acc-inner">
+        <p>We did not rename your Academy. We gave it a front door: your own IP, packaged into one named progression your audience can see and want.</p>
+        <p><span class="gold-label">The promise:</span> go from a 9-5 to a remote high-ticket closing career, closing with a fearless mindset and no cheesy tactics.</p>
+        <p><span class="gold-label">The three steps:</span></p>
+        <p>1. The Fearless Mindset<br>2. The Closing System (four buyer types, no cheesy tactics)<br>3. Get Placed</p>
+        <p>Built straight from your own ladder: door-to-door, to a 23-agent agency, to eight figures.</p>
+        <p><span class="gold-label">The stack:</span></p>
+        <ul class="stack-list">
+          <li>The full Fearless Closer Path curriculum</li>
+          <li>Certified Setter and Certified Closer training</li>
+          <li>Live coaching and role-play reps</li>
+          <li>Placement support</li>
+          <li>A community of closers</li>
+          <li>The book and the frameworks</li>
+        </ul>
+        <p style="margin-top:14px;">Application-based, so the free-content audience knows exactly what they are applying for, and the intake filters tire-kickers.</p>
+      </div></div>
+    </div>
+
+    <!-- 3 ANGLES -->
+    <div class="card reveal">
+      <div class="acc-head"><div class="left"><div class="acc-num">3</div><h3>Campaign Angles (5)</h3></div><span class="acc-icon">+</span></div>
+      <div class="acc-body"><div class="acc-inner">
+        <div class="item"><span class="name">1. Rejection Therapy With a Paycheck</span><span class="hl">"Sales is just rejection therapy with a commission check. Most people quit right before the part that pays."</span></div>
+        <div class="item"><span class="name">2. From the Door to Eight Figures</span><span class="hl">"I knocked doors for $50K a summer. Then I sold eight figures remotely. Here is the exact path."</span></div>
+        <div class="item"><span class="name">3. The 9-5 Exit</span><span class="hl">"There is a $300 billion industry hiring closers who work from a laptop. Nobody told you because nobody trained you."</span></div>
+        <div class="item"><span class="name">4. No Cheesy Tactics</span><span class="hl">"You do not need a script that makes you cringe. You need to read the buyer and frame the offer."</span></div>
+        <div class="item"><span class="name">5. The Book Was Chapter One</span><span class="hl">"You read the book. This is where you actually become the closer."</span></div>
+      </div></div>
+    </div>
+
+    <!-- 4 AD SCRIPTS -->
+    <div class="card reveal">
+      <div class="acc-head"><div class="left"><div class="acc-num">4</div><h3>Ad Script Concepts (3)</h3></div><span class="acc-icon">+</span></div>
+      <div class="acc-body"><div class="acc-inner">
+        <div class="item"><span class="pill">Direct Response</span><p><strong>Hook:</strong> "If you want a remote high-ticket closing job but you have no idea how to actually land one, read this."</p><p>The industry is real and reps are posting real checks. Nobody trains the two things that matter: closing without cheesy tactics, and getting placed. I went from knocking doors to eight figures, and I put the whole path into one program.</p><p><strong>CTA:</strong> Apply for the Fearless Closer Path.</p></div>
+        <div class="item"><span class="pill">Proof-Led</span><p><strong>Hook:</strong> "I sold over ten million dollars remotely and helped build a company onto the INC 5000 four years straight. Here is what nobody tells new closers."</p><p>It is not the perfect script. It is handling rejection like a professional and reading the buyer in front of you. That is what we install.</p><p><strong>CTA:</strong> See if you qualify for the Path.</p></div>
+        <div class="item"><span class="pill">Value-First</span><p><strong>Hook:</strong> "There are only four types of buyers. Once you can spot which one you are talking to, closing gets quiet and simple."</p><p>A quick teach on the four buyer types and why pressure tactics blow up the deal, then the bridge into the Path.</p><p><strong>CTA:</strong> Want the full path? Apply to work with me.</p></div>
+      </div></div>
+    </div>
+
+    <!-- 5 LANDING PAGE -->
+    <div class="card reveal">
+      <div class="acc-head"><div class="left"><div class="acc-num">5</div><h3>Landing Page Preview</h3></div><span class="acc-icon">+</span></div>
+      <div class="acc-body"><div class="acc-inner">
+        <p>A full <strong>Fearless Closer Path</strong> application page, designed in your green brand and built to take a book reader or content viewer straight to an application. It walks the visitor from the "I want in but can't get in the door" pain into the three-step path, layers in your credibility and real endorsements, presents the full stack, and drives to a single application CTA.</p>
+        <p>It's live and ready to view right now.</p>
+        <a href="https://andrei170.github.io/chad-aleo-landing/" class="btn-link" target="_blank" rel="noopener">View the live application page</a>
+      </div></div>
+    </div>
+
+    <!-- 6 VSL -->
+    <div class="card reveal">
+      <div class="acc-head"><div class="left"><div class="acc-num">6</div><h3>VSL Outline</h3></div><span class="acc-icon">+</span></div>
+      <div class="acc-body"><div class="acc-inner">
+        <div class="item"><span class="name">Beat 1: Hook</span><span class="hl">A $300B industry pays closers six figures from a laptop, and you are not in it because nobody taught you the two skills that matter.</span></div>
+        <div class="item"><span class="name">Beat 2: Problem and Agitation</span><span class="hl">Capped salary, scared of rejection, burned by theory courses, watching others post checks.</span></div>
+        <div class="item"><span class="name">Beat 3: Mechanism</span><span class="hl">The Fearless Closer Path: Mindset, the Closing System, Get Placed.</span></div>
+        <div class="item"><span class="name">Beat 4: Credibility</span><span class="hl">Door-to-door to eight figures. INC 5000 four years. Wrote the book.</span></div>
+        <div class="item"><span class="name">Beat 5: Offer</span><span class="hl">The Academy, packaged as the Path: training, certification, and placement.</span></div>
+        <div class="item"><span class="name">Beat 6: CTA</span><span class="hl">Application-only, because you put your name behind who you place.</span></div>
+      </div></div>
+    </div>
+
+  </div>
+
+  <!-- PROCESS -->
+  <div class="sec-head reveal">
+    <div class="eyebrow">How We Work</div>
+    <h2>Done For You. One Operator.</h2>
+  </div>
+
+  <div class="process-grid">
+    <div class="proc reveal"><div class="step">STEP 01</div><h4>We Build the Funnel + Positioning</h4><p>The named system, the application page, and the VSL, all built around your story and your audience.</p></div>
+    <div class="proc reveal"><div class="step">STEP 02</div><h4>We Build and Connect the Tech</h4><p>The VSL, the application, the booking step, and the email flows, wired into one system that runs on its own.</p></div>
+    <div class="proc reveal"><div class="step">STEP 03</div><h4>We Bridge the Book to the Call</h4><p>Your book and free audiobook stop dead-ending. We route every reader straight to a booked application.</p></div>
+    <div class="proc reveal"><div class="step">STEP 04</div><h4>You Train, We Run the Machine</h4><p>You do what you do best on the calls. Everything behind it keeps running without you touching it.</p></div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box reveal">
+    <h2>Ready to build this for real?</h2>
+    <p>Everything above was built specifically for you, Chad. Imagine what we'd do wired into your book, your audience, and your webinar traffic.</p>
+    <a href="https://calendly.com/ag-copy/call-with-andrei" class="btn-link" target="_blank" rel="noopener">Book a call with Andrei</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="wordmark"><span class="ag gold-text">AG</span> <span class="co">CONSULTING</span></div>
+  <div>High-ticket offers and marketing systems, done for you.</div>
+</footer>
+
+<script>
+  document.querySelectorAll('.acc-head').forEach(function(h){
+    h.addEventListener('click', function(){
+      var card = h.parentElement;
+      var body = card.querySelector('.acc-body');
+      var isOpen = card.classList.contains('open');
+      if (isOpen) { body.style.maxHeight = null; card.classList.remove('open'); }
+      else { card.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; }
+    });
+  });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  function runCount(el){
+    var target = parseInt(el.getAttribute('data-count'), 10);
+    var start = null, dur = 1100;
+    function step(ts){ if (!start) start = ts; var p = Math.min((ts - start) / dur, 1); el.textContent = Math.floor(p * target); if (p < 1) requestAnimationFrame(step); else el.textContent = target; }
+    requestAnimationFrame(step);
+  }
+  var countObserved = false;
+  var statObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting && !countObserved){ countObserved = true; document.querySelectorAll('[data-count]').forEach(runCount); } });
+  }, { threshold: 0.4 });
+  var statsEl = document.querySelector('.stats');
+  if (statsEl) statObserver.observe(statsEl);
+</script>
+</body>
+</html>
